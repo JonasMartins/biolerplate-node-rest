@@ -1,4 +1,6 @@
 import { Router, Request, Response } from "express";
+import { Connection } from "typeorm";
+import { Post } from "./../database/entity/Post.entity";
 import { PostService } from "./../services/post.service";
 
 export class PostController {
@@ -12,7 +14,8 @@ export class PostController {
     }
 
     public index = async (req: Request, res: Response) => {
-        res.send(this.postService.index());
+        const posts = await this.postService.index();
+        res.send(posts).json();
     };
 
     public create = async (req: Request, res: Response) => {

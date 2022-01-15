@@ -17,7 +17,10 @@ export class User extends Base {
     @Column({ nullable: true })
     public picture: string;
 
-    @OneToMany(() => Post, (post) => post.creator)
+    @OneToMany(() => Post, (post) => post.creator, {
+        nullable: true,
+        onDelete: "CASCADE",
+    })
     public posts: Post[];
 
     @BeforeInsert()

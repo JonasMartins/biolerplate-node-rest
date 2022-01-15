@@ -7,7 +7,10 @@ export class Post extends Base {
     @Column()
     public body!: string;
 
-    @ManyToOne(() => User, (user) => user.posts)
+    @ManyToOne(() => User, (user) => user.posts, {
+        nullable: true,
+        onDelete: "CASCADE",
+    })
     @JoinTable()
     public creator!: User;
 }

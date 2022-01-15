@@ -11,5 +11,6 @@ export const intializeDB = async (): Promise<void> => {
         console.log("Database successfully initialized");
     } catch (error) {
         console.log(`Database failed to connect ${error.stack}`);
+        throw new Error(error); // end application
     }
 };
