@@ -23,6 +23,9 @@ export default class Application {
             credentials: true, // <-- REQUIRED backend setting
         };
 
+        this.app.use(express.json());
+        this.app.use(express.urlencoded({ extended: true }));
+
         this.app.use(cors(corsOptions));
 
         this.app.set("port", process.env.PORT || 3000);
