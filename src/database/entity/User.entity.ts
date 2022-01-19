@@ -1,7 +1,12 @@
-import { Entity, Column, BeforeInsert, OneToMany } from "typeorm";
+import { Entity, Column, OneToMany } from "typeorm";
 import { Base } from "./Base.entity";
 import { Post } from "./Post.entity";
-import argon2 from "argon2";
+
+interface userBody {
+    name: string;
+    email: string;
+    password: string;
+}
 
 @Entity()
 export class User extends Base {
@@ -23,9 +28,12 @@ export class User extends Base {
     })
     public posts: Post[];
 
-    @BeforeInsert()
-    async hashPassword() {
-        const hashedPasswWord = await argon2.hash(this.password);
-        this.password = hashedPasswWord;
+    constructor(body?: userBody) {
+        super();
+        if (body) {
+            this.name = body.name;
+            this.email = body.email;
+            this.password = body.password;
+        }
     }
 }

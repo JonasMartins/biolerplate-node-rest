@@ -41,11 +41,17 @@ export class PostController {
     };
 
     public create = async (req: Request, res: Response, next: NextFunction) => {
-        if (!req["body"]) {
+        if (!req["body"]["creator_id"]) {
+            return res.status(400).send("Creator id required");
+        }
+
+        const post = req["body"] as Post;
+
+        if (!post) {
             return res.status(400).send("Bad Request");
         }
+
         try {
-            const post = req["body"] as Post;
             const newPost = await this.postService.create(post);
             return res.status(201).send(newPost);
         } catch (error) {
