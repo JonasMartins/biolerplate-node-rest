@@ -1,0 +1,10 @@
+on postman:
+
+http://localhost:5000/api/user/login
+header
+content-type: application/json
+
+{
+    "email": "admin@email.com",
+    "password": "pb_admin"
+}
