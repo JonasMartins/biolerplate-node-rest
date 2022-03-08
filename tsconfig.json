@@ -22,7 +22,7 @@
         "experimentalDecorators": true,
         "resolveJsonModule": true,
         "paths": {
-            "*": ["./src/*", "./tests/*"]
+            "*": ["./src/*", "./test/*"]
         }
     },
     "exclude": ["node_modules"],

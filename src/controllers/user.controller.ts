@@ -1,6 +1,7 @@
 import { Router, Request, Response, NextFunction } from "express";
 import { User } from "./../database/entity/User.entity";
 import { UserService } from "./../services/user.service";
+
 import argon2 from "argon2";
 
 export class UserController {
@@ -16,6 +17,7 @@ export class UserController {
 
     public index = async (req: Request, res: Response, next: NextFunction) => {
         const users = await this.userService.index();
+
         return res.status(200).send(users).json();
     };
 
